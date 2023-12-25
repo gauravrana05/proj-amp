@@ -1,10 +1,10 @@
-// import 'package:app/provider/auth_provider.dart';
-// import 'package:app/screens/home_screen.dart';
-// import 'package:app/screens/register_screen.dart';
+import 'package:amp/provider/auth_provider.dart';
 import 'package:amp/screens/register_screen.dart';
 import 'package:amp/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
+
+import 'home_screen.dart';
+import 'package:provider/provider.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -16,7 +16,7 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
-    // final ap = Provider.of<AuthProvider>(context, listen: false);
+    final ap = Provider.of<AuthProvider>(context, listen: false);
 
     return Scaffold(
       body: SafeArea(
@@ -53,29 +53,24 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   width: double.infinity,
                   height: 50,
                   child: CustomButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const RegisterScreen()),
-                      );
-                      // if (ap.isSignedIn == true) {
-                      //   await ap.getDataFromSP().whenComplete(
-                      //         () => Navigator.pushReplacement(
-                      //           context,
-                      //           MaterialPageRoute(
-                      //             builder: (context) => const HomeScreen(),
-                      //           ),
-                      //         ),
-                      //       );
-                      // } else {
-                      //   Navigator.pushReplacement(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => const RegisterScreen(),
-                      //     ),
-                      //   );
-                      // }
+                    onPressed: () async {
+                      if (ap.isSignedIn == true) {
+                        await ap.getDataFromSP().whenComplete(
+                              () => Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const HomeScreen(),
+                                ),
+                              ),
+                            );
+                      } else {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterScreen(),
+                          ),
+                        );
+                      }
                     },
                     text: "Get started",
                   ),
