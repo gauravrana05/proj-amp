@@ -2,6 +2,7 @@
 import 'package:amp/widgets/custom_button.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -40,6 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   width: 200,
@@ -50,7 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     color: Colors.purple.shade50,
                   ),
                   child: Image.asset(
-                    "assets/image2.png",
+                    "assets/images/img1.png",
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -73,7 +75,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
+                  keyboardType: TextInputType.number,
                   cursorColor: Colors.purple,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
                   controller: phoneController,
                   style: const TextStyle(
                     fontSize: 18,
@@ -100,7 +106,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       borderSide: const BorderSide(color: Colors.black12),
                     ),
                     prefixIcon: Container(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0).copyWith(top: 11),
                       child: InkWell(
                         onTap: () {
                           showCountryPicker(
