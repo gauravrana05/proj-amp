@@ -66,5 +66,6 @@ flutter {
 }
 
 dependencies {
+    dependencies { implementation 'com.google.firebase:firebase-appcheck-safetynet:16.0.0' }
     implementation 'androidx.multidex:multidex:2.0.1'
 }
