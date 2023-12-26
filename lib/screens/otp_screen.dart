@@ -52,7 +52,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           color: Colors.purple.shade50,
                         ),
                         child: Image.asset(
-                          "assets/image2.png",
+                          "assets/images/img1.png",
                         ),
                       ),
                       const SizedBox(height: 20),

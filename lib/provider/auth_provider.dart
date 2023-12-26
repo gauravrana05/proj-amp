@@ -51,10 +51,11 @@ class AuthProvider extends ChangeNotifier {
             await _firebaseAuth.signInWithCredential(phoneAuthCredential);
           },
           verificationFailed: (error) {
-            print(error);
+            print({"this is error", error});
             throw Exception(error.message);
           },
           codeSent: (verificationId, forceResendingToken) {
+            print("sending code");
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -64,7 +65,9 @@ class AuthProvider extends ChangeNotifier {
           },
           codeAutoRetrievalTimeout: (verificationId) {});
     } on FirebaseAuthException catch (e) {
-      showSnackBar(context, e.message.toString());
+      if (context.mounted) {
+        showSnackBar(context, e.message.toString());
+      }
     }
   }
 
